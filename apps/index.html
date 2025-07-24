@@ -330,8 +330,8 @@
                     <!--button disabled="">Coming Soon</button-->
                     <!--button>Go</button-->
                   </div>
-                  <div class="feature-item" disabled="" style="background:#222222;">
-                    <h2 translate="no">Developing</h2>
+                  <div class="feature-item" disabled="" style="background:#222222;" onclick="openEncoding()">
+                    <h2 translate="no">Encoding</h2>
                     <p>Don't miss it... Coming soon.</p>
                     <!--button disabled="">Coming Soon</button-->
                     <!--button>Go</button-->
@@ -372,9 +372,10 @@
       ///document.body.style.fontSize = `${size}px`;
       // 按鈕方法
       function openDecoding(event, el) {
-        ///event.preventDefault(); // 阻止原本的跳轉  // 將先執行 onclick，再依據 href 跳轉
-        ///const href = "https://duguaynins-allninsone.hf.space/decoding";
-        ///const href = "/decoding/";  // 2025/07/20
+        const href = "/apps/encoding.html";
+        window.open(href, "_blank", "noopener,noreferrer");
+      }
+      function openDecoding(event, el) {
         const href = "/apps/decoding.html";
         window.open(href, "_blank", "noopener,noreferrer");
       }
