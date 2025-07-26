@@ -164,19 +164,40 @@
           </div></div>
           
             <div style="background: #FFFFFF; overflow:auto; width:100%; flex:1; border: 1px solid #ccc;">
-              <!--img style="width:100%;" id="linkCode" onclick="openLink()" alt='QR Code'-->
-              <img id="linkCode" onclick="openLink()" alt="QR Code" style="
-                  width: 100vmin;
-                  height: 100vmin;
-                  max-width: 100%;
-                  max-height: 100%;
-                  object-fit: contain;
-                  display: block;
-                  margin: auto;
-                  display: none;
-                " />
-              
+                <!--img id="linkCode" onclick="openLink()" alt='QR Code' style="width:100%;"-->
+                <div id="barcode-slider" style="
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 水平置中 canvas */
+    overflow-y: auto;     /* 可垂直滾動 */
+                ">
+                    <canvas id="qrcode" style="
+                        width: 100vmin;
+                        height: 100vmin;
+                        max-width: 100%;
+                        max-height: 100%;
+                        object-fit: contain;
+                        display: block;
+                        margin: auto;
+                        display: none;
+                      " /></canvas>
+                    <!--canvas id="qrcode"></canvas-->
+                    <canvas id="datamatrix"></canvas>
+                    <canvas id="pdf417"></canvas>
+                    <canvas id="azteccode"></canvas>
+                    <canvas id="maxicode"></canvas>
+                    
+                    <canvas id="ean13"></canvas>
+                    <canvas id="ean8"></canvas>
+                    <canvas id="upca"></canvas>
+                    <canvas id="code128"></canvas>
+                    <canvas id="code39"></canvas>
+                    <canvas id="itf14"></canvas>
+                    <canvas id="codabar"></canvas>
+                    <canvas id="msi"></canvas>
+                </div>
             </div>
+            
           <input class="main" id="InputRoom" type="text" name="noMemory" autocomplete="off" placeholder="input text..." style="width:100%; text-align: center;"/>
             
           <!--strong></strong-->
@@ -185,14 +206,69 @@
           By sending a message to this service, it means you have agreed to any content and all content!
           </div></div>
     </div>
-
+    
+    <!-- 載入 bwip-js 函式庫 -->
+    <!--script src="https://unpkg.com/bwip-js/dist/bwip-js-min.js"></script-->
+     
+  <!--script src="https://unpkg.com/bwip-js@3.5.0/dist/bwip-js-min.js"></script-->
+  <script src="https://unpkg.com/bwip-js/dist/bwip-js-min.js"></script>
+  <script>
+    function gencode(text, bcid, format) {
+        if ( format.test(text) ) {
+            bwipjs.toCanvas( bcid, {
+                bcid:        bcid,     // 條碼格式
+                text:        text,     // 條碼內容  // "Hello world!"
+                scale:       4,
+                includetext: true,
+                alttext:     bcid,     // ✅ 替代顯示的文字
+            });
+            document.getElementById(bcid).style.display = "block";
+        }
+        else {
+            document.getElementById(bcid).style.display = "none";
+        }
+    }
+    
+    // 等待 DOM 元素載入完成
+    /*
+    document.addEventListener('DOMContentLoaded', () => {
+      try {
+      } catch (e) {
+      }
+    });*/
+  </script>
+  
+  
+    <!-- JsBarcode -->
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+    
+    <!-- QRCode.js -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
 
     <script>  // main.js
       document.getElementById('InputRoom').addEventListener('input', () => {
-          document.getElementById('linkCode').style.display = 'block';
           const value = encodeURIComponent(document.getElementById('InputRoom').value);
           const newSrc = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${value}`;
-          document.getElementById('linkCode').src = newSrc;
+          ///document.getElementById('linkCode').src = newSrc;
+          ///document.getElementById('linkCode').style.display = 'block';
+          
+          gencode(text=value, bcid="qrcode", format=/^.{0,1000}$/)
+          gencode(text=value, bcid="datamatrix", format=/^.{0,2000}$/)
+          gencode(text=value, bcid="pdf417", format=/^.{0,1800}$/)
+          gencode(text=value, bcid="azteccode", format=/^.{0,3000}$/)
+          
+          gencode(text=value, bcid="ean13", format=/^\d{12}$/)
+          gencode(text=value, bcid="ean8", format=/^\d{7}$/)
+          gencode(text=value, bcid="upca", format=/^\d{11}$/)
+          gencode(text=value, bcid="code128", format=/^[\x00-\x7F]+$/)
+          gencode(text=value, bcid="code39", format=/^[A-Z0-9\-\.\$\/\+\% ]+$/)
+          gencode(text=value, bcid="itf14", format=/^\d{13}$/)
+          gencode(text=value, bcid="codabar", format=/^[ABCD][0-9\-\$:\/\.]+[ABCD]$/)
+          gencode(text=value, bcid="msi", format=/^\d+$/)
+              
+          ///gencode_ean13(value);
+          ///gencode_datamatrix(value);
+          ///gencode_qrcode(value);
       });
       
       // 字體大小
