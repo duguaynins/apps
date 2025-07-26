@@ -243,7 +243,6 @@
       cursor: not-allowed;
     }
   </style>
-
   <style>
     @keyframes fadeGradient {
       from {
@@ -256,6 +255,24 @@
     @keyframes fadeOut {
       from { opacity: 1; }
       to { opacity: 0; }
+    }
+    
+    
+    @keyframes hardBlink {
+      0%, 100% { border-color: red; }
+      50%      { border-color: transparent; }
+    }
+    .main {
+        border: 2px solid red;
+        padding: 8px;
+        /**animation: blinkBorder 1s infinite;  //===*/
+        /* 呼吸式動畫：平滑過渡 */
+        /**animation: blinkBorder 1s ease-in-out infinite;  //===*/
+        /* 閃爍式動畫：瞬間切換 */
+        animation: hardBlink 1.0s steps(1, start) infinite;
+        /* 以下根據主題自訂 */
+        /*background-color: white;    ///FF3B00;
+        color: black;///gray;*/
     }
   </style>
 </head>
@@ -312,43 +329,43 @@
             <div style="background: #FFFFFF; overflow:auto; width:100%; flex:1; border: 1px solid #ccc;">
               <div class="feature-grid">
               
-                  <div class="feature-item" disabled="" style="background:#cdcdcd;">
+                  <div class="feature-item" disabled="" style="background:#fff999;">
                     <h2 translate="no">Notice</h2>
                     <p>By using this service, it means you have agreed to any content and all content!</p>
                     <!--button disabled="">Coming Soon</button-->
                     <!--button>Go</button-->
                   </div>
-                  <div class="feature-item" disabled="" style="background:#222222;">
+                  <div class="feature-item" disabled="" style="background:#222222; color:white;">
                     <h2 translate="no">Developing</h2>
                     <p>Don't miss it... Coming soon.</p>
                     <!--button disabled="">Coming Soon</button-->
                     <!--button>Go</button-->
                   </div>
-                  <div class="feature-item" disabled="" style="background:#222222;">
+                  <div class="feature-item" disabled="" style="background:#222222; color:white;">
                     <h2 translate="no">Developing</h2>
                     <p>Don't miss it... Coming soon.</p>
                     <!--button disabled="">Coming Soon</button-->
                     <!--button>Go</button-->
                   </div>
-                  <div class="feature-item" style="background:#222222;" onclick="openEncoding()">
+                  <div class="feature-item" onclick="openEncoding()" style="">
                     <h2 translate="no">Encoding</h2>
                     <p>Don't miss it... Coming soon.</p>
                     <!--button disabled="">Coming Soon</button-->
                     <!--button>Go</button-->
                   </div>
-                  <div class="feature-item" onclick="openDecoding()" style="width:auto;">
+                  <div class="feature-item" onclick="openDecoding()" style="">
                     <h2 translate="no">Decoding</h2>
                     <p>Use the camera to decode the graphics code.</p>
                     <!--button disabled="">Coming Soon</button-->
                     <!--button>Go</button-->
                   </div>
-                  <div class="feature-item" onclick="openTransing()" style="width:auto;">
+                  <div class="feature-item main" onclick="openTransing()" style="">
                     <h2 translate="no">Transing</h2>
                     <p>Use chat channels to easily start communicating with anyone.</p>
                     <!--button disabled="">Coming Soon</button-->
                     <!--button>Go</button-->
                   </div>
-                  <div class="feature-item" style="width:auto; background:#cdcdcd;">
+                  <div class="feature-item" style="width:auto; background:#fff999;">
                   <!--div class="feature-item" onclick="window.open('https://sites.google.com/view/nins/', '_blank', 'noopener,noreferrer');" style="width:auto; background:#cdcdcd;"-->
                     <h2 translate="no">Admins</h2>
                     <p>duguaynins@gmail.com</p>
@@ -484,4 +501,3 @@
     
 </body>
 </html>
-
