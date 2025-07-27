@@ -112,6 +112,22 @@
         /* 閃爍式動畫：瞬間切換 */
         animation: hardBlink 1.0s steps(1, start) infinite;
     }
+    
+    input:hover {
+      background-color: #cdcdcd;    ///FF3B00;
+      color: black;///gray;
+    }
+    input:active {
+      background-color: #222222;  ///#004080;
+      color: white;///gray;
+    }
+    input:focus {
+      outline: none;              /* 移除預設藍色邊框 */
+      /* border: 2px solid #4CAF50;  改為綠色邊框 */
+      /* box-shadow: 0 0 5px #4CAF50; */
+      border: 2px solid red;       /* 或使用 #f44336 */
+      box-shadow: 0 0 5px red;
+    }
   </style>
 </head>
 <body>
@@ -172,7 +188,7 @@
                     align-items: center; /* 水平置中 canvas */
                     overflow-y: auto;     /* 可垂直滾動 */
                 ">
-                    <canvas id="qrcode" style="
+                    <!--canvas id="qrcode" style="
                         width: 100vmin;
                         height: 100vmin;
                         max-width: 100%;
@@ -181,8 +197,8 @@
                         display: block;
                         margin: auto;
                         display: none;
-                      " /></canvas>
-                    <!--canvas id="qrcode"></canvas-->
+                      " /></canvas-->
+                    <canvas id="qrcode"></canvas>
                     <canvas id="datamatrix"></canvas>
                     <canvas id="pdf417"></canvas>
                     <canvas id="azteccode"></canvas>
@@ -199,7 +215,7 @@
                 </div>
             </div>
             
-          <input class="main" id="InputRoom" type="text" name="noMemory" autocomplete="off" placeholder="input text..." style="width:100%; text-align: center;"/>
+          <input class="main" id="InputRoom" type="text" name="noMemory" autocomplete="off" placeholder="input" style="width:100%; text-align: center;"/>
             
           <!--strong></strong-->
           <div style="background: #FF3B00; color: white;" translate="yes">
@@ -223,6 +239,7 @@
                 includetext: true,
                 alttext:     bcid,     // ✅ 替代顯示的文字
             });
+            document.getElementById(bcid).style.margin = "1em 0";
             document.getElementById(bcid).style.display = "block";
         }
         else {
