@@ -54,13 +54,6 @@
       box-sizing: border-box; /* 推薦加上，避免寬高計算誤差 */
     }
         
-    input:focus {
-      outline: none;              /* 移除預設藍色邊框 */
-      /* border: 2px solid #4CAF50;  改為綠色邊框 */
-      /* box-shadow: 0 0 5px #4CAF50; */
-      border: 2px solid red;       /* 或使用 #f44336 */
-      box-shadow: 0 0 5px red;
-    }
     p, summary, details {
       /* text-indent: 0; */
     }
@@ -126,6 +119,13 @@
     input:active {
       background-color: #222222;  ///#004080;
       color: white;///gray;
+    }
+    input:focus {
+      outline: none;              /* 移除預設藍色邊框 */
+      /* border: 2px solid #4CAF50;  改為綠色邊框 */
+      /* box-shadow: 0 0 5px #4CAF50; */
+      border: 2px solid red;       /* 或使用 #f44336 */
+      box-shadow: 0 0 5px red;
     }
 </style>
 <style>
