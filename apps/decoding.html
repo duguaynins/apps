@@ -316,7 +316,8 @@
                         scanResult.innerHTML = html;
                         ///statusMessage.innerText = '已偵測到條碼／QR Code！';
                         statusMessage.innerText = 'Barcode/QR Code detected!';
-                        statusMessage.innerText = result.barcodeFormat;  // types
+                        statusMessage.innerText = result.format;  // types
+                        ///statusMessage.innerText = result.barcodeFormat;  // types
                         
                         // 掃描到結果後，可選擇停止掃描，這邊示範停止
                         ///stopScanning();
