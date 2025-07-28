@@ -342,21 +342,21 @@
                     <!--button disabled="">Coming Soon</button-->
                     <!--button>Go</button-->
                   </div>
-                  <div class="feature-item" onclick="openApp(repo='beta', file='encoding.html')" style="">
+                  <div class="feature-item" onclick="openApp(repo='apps.nins', file='encoding.html')" style="">
                     <div style="position: absolute; top: 0; right: 0; background: orange; color: black; padding: 2px 6px; font-size: 0.8em; font-weight: bold;">BETA</div>
                     <h2 translate="no">Encoding</h2>
                     <p>Don't miss it... Coming soon.</p>
                     <!--button disabled="">Coming Soon</button-->
                     <!--button>Go</button-->
                   </div>
-                  <div class="feature-item" onclick="openApp(repo='beta', file='decoding.html')" style="">
+                  <div class="feature-item" onclick="openApp(repo='apps.nins', file='decoding.html')" style="">
                     <h2 translate="no">Decoding</h2>
                     <div style="position: absolute; top: 0; right: 0; background: orange; color: black; padding: 2px 6px; font-size: 0.8em; font-weight: bold;">BETA</div>
                     <p>Use the camera to decode the graphics code.</p>
                     <!--button disabled="">Coming Soon</button-->
                     <!--button>Go</button-->
                   </div>
-                  <div class="feature-item main" onclick="openApp(repo='beta', file='transing.html')" style="">
+                  <div class="feature-item main" onclick="openApp(repo='apps.nins', file='transing.html')" style="">
                     <h2 translate="no">Transing</h2>
                     <div style="position: absolute; top: 0; left: 0; background: orange; color: black; padding: 2px 6px; font-size: 0.8em; font-weight: bold;">🔥</div>
                     <div style="position: absolute; top: 0; right: 0; background: orange; color: black; padding: 2px 6px; font-size: 0.8em; font-weight: bold;">BETA</div>
@@ -392,19 +392,11 @@
       // 按鈕方法
       
       function openApp(repo, file) {
-        const href = "https://" + repo + ".nins.jpgt.one/apps/" + file;
-        window.open(href, "_blank", "noopener,noreferrer");
-      }
-      function openEncoding(event, el) {
-        const href = "https://beta.nins.jpgt.one/apps/encoding.html";
-        window.open(href, "_blank", "noopener,noreferrer");
-      }
-      function openDecoding(event, el) {
-        const href = "https://beta.nins.jpgt.one/apps/decoding.html";
+        const href = "https://" + repo + ".jpgt.one/apps/" + file;
         window.open(href, "_blank", "noopener,noreferrer");
       }
       // 按鈕方法
-      function openTransing(event, el) {
+      function openTest(event, el) {
         ///const href = "/apps/transing.html";
         const href = "https://beta.nins.jpgt.one/apps/transing.html";
         window.open(href, "_blank", "noopener,noreferrer");
