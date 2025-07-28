@@ -13,7 +13,6 @@
       /*font-size: inherit; /* 主動繼承 body 字體大小 */
       font-size: 18px;
     }
-    canvas { width: 87vw; }
     html, body { font-size: 14px; }
     html, body {
       margin: 0;
@@ -128,6 +127,24 @@
       border: 2px solid red;       /* 或使用 #f44336 */
       box-shadow: 0 0 5px red;
     }
+    .twod {
+      /*width: 100vmin;
+      height: 100vmin;*/
+    }
+    .oned {
+      /*width: 100vmin;
+      height: 10vmin;*/
+    }
+    .thumb { 
+      /*width: 87vw;*/
+      width: 100px;
+      height: 60px;
+      margin: 0.5em;
+      cursor: pointer;
+      border: 1px solid #ccc;
+      object-fit: contain;
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -184,34 +201,44 @@
                 <!--img id="linkCode" onclick="openLink()" alt='QR Code' style="width:100%;"-->
                 <div id="barcode-slider" style="
                     display: flex;
-                    flex-direction: column;
-                    align-items: center; /* 水平置中 canvas */
+                    flex-direction: column;  /* 上下==column */
+                    align-items: center;  /* 水平置中 canvas */
                     overflow-y: auto;     /* 可垂直滾動 */
+                    /*overflow-x: auto;     /* 可垂直滾動 */
                 ">
-                    <canvas id="qrcode" style="
-                        width: 100vmin;
-                        height: 100vmin;
+
+                    <div id="test" style="
+                        display: flex;
+                        flex-direction: row;  /* 上下==column */
+                        align-items: center;  /* 水平置中 canvas */
+                        /*overflow-y: auto;     /* 可垂直滾動 */
+                        overflow-x: auto;     /* 可垂直滾動 */
+                    ">
+                    <canvas class="thumb twod" id="qrcode"></canvas>
+                    <canvas class="thumb twod" id="pdf417"></canvas>
+                    <canvas class="thumb twod" id="datamatrix"></canvas>
+                    <canvas class="thumb twod" id="azteccode"></canvas>
+                    <canvas class="thumb twod" id="maxicode"></canvas>
+                    
+                    <canvas class="thumb oned" id="ean13"></canvas>
+                    <canvas class="thumb oned" id="ean8"></canvas>
+                    <canvas class="thumb oned" id="upca"></canvas>
+                    <canvas class="thumb oned" id="code128"></canvas>
+                    <canvas class="thumb oned" id="code39"></canvas>
+                    <canvas class="thumb oned" id="itf14"></canvas>
+                    <canvas class="thumb oned" id="codabar"></canvas>
+                    <canvas class="thumb oned" id="msi"></canvas>
+                    </div><br>
+                    
+                    <canvas class="" id="show" style="
+                        width: 88vmin;
+                        height: 88vmin;
                         max-width: 100%;
                         max-height: 100%;
                         object-fit: contain;
-                        display: block;
                         margin: auto;
                         display: none;
-                      " /></canvas>
-                    <!--canvas id="qrcode"></canvas-->
-                    <canvas id="datamatrix"></canvas>
-                    <canvas id="pdf417"></canvas>
-                    <canvas id="azteccode"></canvas>
-                    <canvas id="maxicode"></canvas>
-                    
-                    <canvas id="ean13"></canvas>
-                    <canvas id="ean8"></canvas>
-                    <canvas id="upca"></canvas>
-                    <canvas id="code128"></canvas>
-                    <canvas id="code39"></canvas>
-                    <canvas id="itf14"></canvas>
-                    <canvas id="codabar"></canvas>
-                    <canvas id="msi"></canvas>
+                      " /></canvas><br>
                 </div>
             </div>
             
@@ -228,16 +255,45 @@
     <!--script src="https://unpkg.com/bwip-js/dist/bwip-js-min.js"></script-->
      
   <!--script src="https://unpkg.com/bwip-js@3.5.0/dist/bwip-js-min.js"></script-->
+
+  <script>  // encode.js
+    // 點選任一縮圖，將其內容畫到 preview 畫布上
+    document.querySelectorAll('.thumb').forEach(canvas => {
+      canvas.addEventListener('click', () => {
+        const preview = document.getElementById('show');  // preview
+        const ctx = preview.getContext('2d');
+        
+        // 調整尺寸
+        preview.width = canvas.width;
+        preview.height = canvas.height;
+
+        // 清除 & 複製
+        ctx.clearRect(0, 0, preview.width, preview.height);
+        ctx.drawImage(canvas, 0, 0);
+        preview.style.display = 'block';
+
+        /*
+        // 開啟圖片於新的分頁
+        ///const dataUrl = this.toDataURL("image/png");
+        const dataUrl = canvas.toDataURL("image/png");
+        console.log(dataUrl);
+        // 開新分頁
+        ///window.open(dataUrl, '_blank');
+        window.open(dataUrl, "_blank", "noopener,noreferrer");*/
+      });
+    });
+  </script>
+
   <script src="https://unpkg.com/bwip-js/dist/bwip-js-min.js"></script>
   <script>
     function gencode(text, bcid, format) {
-        if ( format.test(text) ) {
+        if ( format.test(text) && text.trim()!=="" ) {
             bwipjs.toCanvas( bcid, {
                 bcid:        bcid,     // 條碼格式
                 text:        text,     // 條碼內容  // "Hello world!"
                 scale:       4,
-                includetext: true,
-                alttext:     bcid,     // ✅ 替代顯示的文字
+                ///includetext: true,
+                ///alttext:     bcid,     // ✅ 替代顯示的文字
             });
             document.getElementById(bcid).style.margin = "1em 0";
             document.getElementById(bcid).style.display = "block";
@@ -273,7 +329,13 @@
       document.getElementById('InputRoom').addEventListener('input', () => {
           const value = encodeURIComponent(document.getElementById('InputRoom').value);
           const newSrc = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${value}`;
-          if (value.trim() === "") { canvas.style.display = "none"; }
+
+          if (value.trim() === "") { 
+            document.querySelectorAll("canvas").forEach(c => {
+              c.style.display = "none";
+            });
+
+          }
 
           ///document.getElementById('linkCode').src = newSrc;
           ///document.getElementById('linkCode').style.display = 'block';
