@@ -1445,10 +1445,10 @@
   
     <script>
     // 語音轉文字
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    
     let autoRestart = null;
-    const recognition = new SpeechRecognition();
+    let recognition = null;
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SpeechRecognition) { recognition = new SpeechRecognition(); }
     
     if (!recognition) { 
         const button = document.getElementById("ButtonMike");
@@ -1744,6 +1744,7 @@
         const tryTranslate = () => {
           const combo = document.querySelector('.goog-te-combo');
           if (combo) {
+            const options = Array.from(combo.options).map(opt => opt.value);console.log('可用語言代碼:', options);
             combo.value = lang;
             combo.dispatchEvent(new Event('change'));
           } else {
@@ -1757,6 +1758,7 @@
         setTimeout(() => {
           ///const tlang = navigator.language || navigator.userLanguage || "en-US";
           autoTranslate(tlang);
+          console.log("sl, tl：", tlang);
           
           ///document.getElementById(":1.container").style.display = "";
         }, 1000);
