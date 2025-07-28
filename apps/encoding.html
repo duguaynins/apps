@@ -199,21 +199,15 @@
           
             <div style="background: #FFFFFF; overflow:auto; width:100%; flex:1; border: 1px solid #ccc;">
                 <!--img id="linkCode" onclick="openLink()" alt='QR Code' style="width:100%;"-->
+                
                 <div id="barcode-slider" style="
                     display: flex;
-                    flex-direction: column;  /* 上下==column */
+                    /*flex-direction: row;  /* 上下==column */
+                    justify-content: center;
                     align-items: center;  /* 水平置中 canvas */
                     /*overflow-y: auto;     /* 可垂直滾動 */
-                    /*overflow-x: auto;     /* 可垂直滾動 */
+                    /*overflow-x: auto;     /* 可水平滾動 */
                 ">
-
-                    <div id="test" style="
-                        display: flex;
-                        flex-direction: row;  /* 上下==column */
-                        align-items: center;  /* 水平置中 canvas */
-                        overflow-y: auto;     /* 可垂直滾動 */
-                        /*overflow-x: auto;     /* 可垂直滾動 */
-                    ">
                     <canvas class="thumb twod" id="qrcode"></canvas>
                     <canvas class="thumb twod" id="pdf417"></canvas>
                     <canvas class="thumb twod" id="datamatrix"></canvas>
@@ -228,16 +222,17 @@
                     <canvas class="thumb oned" id="itf14"></canvas>
                     <canvas class="thumb oned" id="codabar"></canvas>
                     <canvas class="thumb oned" id="msi"></canvas>
-                    </div><br>
                     
-                    <canvas class="" id="show" style="
-                        max-width: 88vmin;
-                        max-width: 88vmin;
-                        object-fit: contain;
-                        margin: auto;
-                        display: none;
-                      " /></canvas><br>
                 </div>
+                
+                <canvas class="" id="show" style="
+                    max-width: 88vmin;
+                    max-width: 88vmin;
+                    object-fit: contain;
+                    margin: auto;
+                    display: none;
+                  " /></canvas><br>
+                  
             </div>
             
           <input class="main" id="InputRoom" type="text" name="noMemory" autocomplete="off" placeholder="input" style="width:100%; text-align: center;"/>
