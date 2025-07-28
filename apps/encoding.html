@@ -144,6 +144,7 @@
       border: 1px solid #ccc;
       object-fit: contain;
       display: none;
+      flex-shrink: 0;        /* 防止被壓縮 */
     }
   </style>
 </head>
@@ -203,10 +204,12 @@
                 <div id="barcode-slider" style="
                     display: flex;
                     /*flex-direction: row;  /* 上下==column */
-                    justify-content: center;
+                    /*justify-content: center;*/
+                    justify-content: flex-start;  /* 左對齊較符合滾動預期 */
+                    flex-shrink: 0
                     align-items: center;  /* 水平置中 canvas */
                     /*overflow-y: auto;     /* 可垂直滾動 */
-                    /*overflow-x: auto;     /* 可水平滾動 */
+                    overflow-x: auto;     /* 可水平滾動 */
                 ">
                     <canvas class="thumb twod" id="qrcode"></canvas>
                     <canvas class="thumb twod" id="pdf417"></canvas>
