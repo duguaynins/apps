@@ -6,7 +6,7 @@
   <!--link rel="icon" type="image/x-icon" sizes="48x48" href="https://duguaynins-allninsone.hf.space/favicon.ico"-->
   <!--link rel="icon" type="image/png" sizes="48x48" href="/favicon.png"-->
   <!--link rel="shortcut icon" href="/favicon.ico"-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
   <title translate="no">nins/encoding</title>
   <style>
     input, textarea, button, select {
@@ -330,7 +330,8 @@
           if (value.trim() === "") { canvas.style.display = "none"; }
       });*/
       document.getElementById('InputRoom').addEventListener('input', () => {
-          const value = encodeURIComponent(document.getElementById('InputRoom').value);
+          const value = document.getElementById('InputRoom').value;  // 未經過編碼 encodeURIComponent()
+          ///const value = encodeURIComponent(document.getElementById('InputRoom').value);  // 經過編碼
           const newSrc = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${value}`;
 
           if (value.trim() === "") { 
