@@ -1170,7 +1170,7 @@
             case 'disconnected':
               console.log('⚠️ Disconnected: Connection is temporarily unavailable, retrying...');
               state.textContent  = "⚠️（Disconnected）";
-              ably.close();  ///!!!
+              ///ably.close();  ///!!!
               
               document.getElementById("InputMsg").disabled = true;
               document.getElementById("ButtonMsg").disabled = true;
