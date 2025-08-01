@@ -1170,12 +1170,14 @@
             case 'disconnected':
               console.log('⚠️ Disconnected: Connection is temporarily unavailable, retrying...');
               state.textContent  = "⚠️（Disconnected）";
-              ///ably.close();  ///!!!
-              
+
+              /*
+              ably.close();  ///!!!
               document.getElementById("InputMsg").disabled = true;
               document.getElementById("ButtonMsg").disabled = true;
               document.getElementById("chatbox").style.backgroundColor = '#cdcdcd';
-              ///document.getElementById("InputMsg").style.backgroundColor = '#cdcdcd';
+              ///document.getElementById("InputMsg").style.backgroundColor = '#cdcdcd';*/
+
               break;
             case 'suspended':
               console.log('⛔ Suspended: Connection failed for too long. Will retry after a delay.');
