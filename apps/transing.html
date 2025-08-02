@@ -1612,16 +1612,19 @@
     ///};
     
     document.getElementById("Selectslang").addEventListener("change", function () {
-        if (!recognition) { }
-        if (recognition) {  ///!!!
+        if (true) { 
             const selectedValue = this.value;
             slang = selectedValue;  // 輸入的語言
             console.log("選擇了：", selectedValue);
+            autoRestart = false;  ///!!!
+        }
+
+        if (!recognition) { }
+        if (recognition) {  ///!!!
             
             recognition.lang = slang;
             ///recognition.stop();recognition.start();
 
-            autoRestart = false;  ///!!!
             recognition.stop();  ///!!!
             document.getElementById("ButtonMike").textContent = "🎙️（STOP）";  ///!!!
         }
