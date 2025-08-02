@@ -1612,16 +1612,19 @@
     ///};
     
     document.getElementById("Selectslang").addEventListener("change", function () {
-        const selectedValue = this.value;
-        slang = selectedValue;  // 輸入的語言
-        console.log("選擇了：", selectedValue);
-        
-        recognition.lang = slang;
-        ///recognition.stop();recognition.start();
+        if (!recognition) { }
+        if (recognition) {  ///!!!
+            const selectedValue = this.value;
+            slang = selectedValue;  // 輸入的語言
+            console.log("選擇了：", selectedValue);
+            
+            recognition.lang = slang;
+            ///recognition.stop();recognition.start();
 
-        autoRestart = false;  ///!!!
-        recognition.stop();  ///!!!
-        document.getElementById("ButtonMike").textContent = "🎙️（STOP）";  ///!!!
+            autoRestart = false;  ///!!!
+            recognition.stop();  ///!!!
+            document.getElementById("ButtonMike").textContent = "🎙️（STOP）";  ///!!!
+        }
     });
     
     document.getElementById("Selectilang").addEventListener("change", function () {
